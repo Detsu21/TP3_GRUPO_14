@@ -22,7 +22,7 @@ public class DaoCategoria {
 	}
 	
 	public int agregarCategoria(Categoria categoria) {
-		String query = "Insert into categoria(idcategoria, nombre) values (" + categoria.getIdCategoria() + ", '" + categoria.getNombre() +"')";
+		String query = "INSERT INTO categorias (idcategoria, nombre) VALUES (" + categoria.getIdCategoria() + ", '" + categoria.getNombre() + "')";
 		Connection cn = null;
 		int filas = 0;
 		try 
@@ -81,7 +81,7 @@ public class DaoCategoria {
 		{
 			cn = DriverManager.getConnection(host+dbName, user, pass);
 			Statement st = cn.createStatement();
-			String query = "SELECT * FROM categoria";
+			String query = "SELECT * FROM categorias";
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next())
 			{

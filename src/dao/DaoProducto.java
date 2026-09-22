@@ -24,7 +24,7 @@ public class DaoProducto {
 	}
 	
 	public int agregarProducto(Producto Producto) {
-		String query = "Insert into Productos(Codigo, nombre, Precio, Stock, IdCategoria) values (" + Producto.getCodigo() + ", '" + Producto.getNombre() +"', " + Producto.getPrecio() +", " + Producto.getStock() +", " + Producto.getIdCategoria() +")";
+		String query = "INSERT INTO Productos (Codigo, nombre, Precio, Stock, IdCategoria) VALUES (" + Producto.getCodigo() + ", '" + Producto.getNombre() + "', " + Producto.getPrecio() + ", " + Producto.getStock() + ", " + Producto.getIdCategoria() + ")";
 		Connection cn = null;
 		int filas = 0;
 		try 
