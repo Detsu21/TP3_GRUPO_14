@@ -22,7 +22,7 @@ public class DaoCategoria {
 	}
 	
 	public int agregarCategoria(Categoria categoria) {
-		String query = "Insert into categoria(idcategoria, nombre) values ('" + categoria.getIdCategoria() + "', '" + categoria.getNombre() +"')";
+		String query = "Insert into categoria(idcategoria, nombre) values (" + categoria.getIdCategoria() + ", '" + categoria.getNombre() +"')";
 		Connection cn = null;
 		int filas = 0;
 		try 
@@ -114,4 +114,6 @@ public class DaoCategoria {
 	    }
 	    return filas;
 	}
+	
+
 }
