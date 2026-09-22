@@ -2,7 +2,7 @@ package entidad;
 
 public class Producto {
     
-    private String codigo;
+    private int codigo;
     private String nombre;
     private double precio;
     private int stock;
@@ -11,7 +11,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String codigo, String nombre, double precio, int stock, int idCategoria) {
+    public Producto(int codigo, String nombre, double precio, int stock, int idCategoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
@@ -19,12 +19,12 @@ public class Producto {
         this.idCategoria = idCategoria;
     }
 
-    public String getCodigo() { 
+    public int getCodigo() { 
         return codigo; 
     }
     
-    public void setCodigo(String codigo) { 
-        this.codigo = codigo; 
+    public void setCodigo(int i) { 
+        this.codigo = i; 
     }
 
     public String getNombre() { 
