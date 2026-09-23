@@ -24,12 +24,24 @@ public class DaoProducto {
 	}
 	
 	public int agregarProducto(Producto Producto) {
+		
+	    String checkQuery = "SELECT COUNT(*) FROM Productos WHERE Codigo = ?";
 		String query = "INSERT INTO Productos (Codigo, nombre, Precio, Stock, IdCategoria) VALUES (" + Producto.getCodigo() + ", '" + Producto.getNombre() + "', " + Producto.getPrecio() + ", " + Producto.getStock() + ", " + Producto.getIdCategoria() + ")";
 		Connection cn = null;
 		int filas = 0;
-		try 
-		{
-			cn = DriverManager.getConnection(host+dbName, user, pass);
+		
+	    try {
+	        cn = DriverManager.getConnection(host + dbName, user, pass);
+
+	        PreparedStatement checkSt = cn.prepareStatement(checkQuery);
+	        checkSt.setInt(1, Producto.getCodigo());
+	        ResultSet rs = checkSt.executeQuery();
+
+	        if (rs.next() && rs.getInt(1) > 0) {
+	            System.out.println("Ya existe un producto con el código " + Producto.getCodigo());
+	            return 0; 
+	        }
+	        
 			Statement st = cn.createStatement();
 			filas = st.executeUpdate(query);
 		}

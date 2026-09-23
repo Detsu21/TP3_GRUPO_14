@@ -22,12 +22,22 @@ public class DaoCategoria {
 	}
 	
 	public int agregarCategoria(Categoria categoria) {
+	    String checkQuery = "SELECT COUNT(*) FROM categorias WHERE idcategoria = ?";
 		String query = "INSERT INTO categorias (idcategoria, nombre) VALUES (" + categoria.getIdCategoria() + ", '" + categoria.getNombre() + "')";
 		Connection cn = null;
 		int filas = 0;
 		try 
 		{
 			cn = DriverManager.getConnection(host+dbName, user, pass);
+			
+	        PreparedStatement checkSt = cn.prepareStatement(checkQuery);
+	        checkSt.setInt(1, categoria.getIdCategoria());
+	        ResultSet rs = checkSt.executeQuery();
+
+	        if (rs.next() && rs.getInt(1) > 0) {
+	            System.out.println("Ya existe una categoría con el id " + categoria.getIdCategoria());
+	            return 0;
+	        }
 			Statement st = cn.createStatement();
 			filas = st.executeUpdate(query);
 		}
